@@ -1,0 +1,31 @@
+$nav-box-shadow-color: rgba(0, 0, 0, 0.2);
+
+nav {
+	.nav-item {
+		a.btn {
+			background: yellow;
+			border-radius: 20px;
+			color: black;
+			box-shadow: 2px -1px 31px 6px $nav-box-shadow-color;
+		}
+	}
+
+}
+
+@media screen and(max-width: 991px) {
+	.navbar-nav {
+		background: white;
+		padding: 20px;
+		margin-top: 20px;
+		box-shadow: 2px -1px 31px 6px $nav-box-shadow-color;
+		border-radius: 20px;
+
+		.nav-item a {
+			color: black;
+			margin: 0;
+			&:hover {
+				color: #4f4f22;
+			}
+		}
+	}
+}
