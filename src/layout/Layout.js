@@ -1,5 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 
+import './Layout.scss';
+
 const Layout = ({ children }) => {
   return (
     <>
