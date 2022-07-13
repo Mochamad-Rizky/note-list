@@ -5,7 +5,7 @@ import convertDateToLocale from "../../utils/convertDatetoLocale";
 
 import './NoteListItem.scss';
 
-const NoteListItem = ({ title, body, createdAt, id, archivedStatus }) => {
+const NoteListItem = ({ title, body, createdAt, id, archivedStatus, onDelete, onArchive, onUnArchive }) => {
   return (
     <article className="note-list__item">
       <div className="note-list__item-description__container">
@@ -14,7 +14,7 @@ const NoteListItem = ({ title, body, createdAt, id, archivedStatus }) => {
         <p className="note-list__item-description">{body}</p>
       </div>
       <div className="note-list__item-button-container">
-        <ActionButton archivedStatus={archivedStatus} />
+        <ActionButton archivedStatus={archivedStatus} onDelete={onDelete} onArchive={onArchive} onUnArchive={onUnArchive} id={id} />
       </div>
     </article>
   );

@@ -4,10 +4,10 @@ import NoteListItem from "../NoteListItem/NoteListItem";
 
 import './NoteList.scss';
 
-const NoteList = ({ notes, title, isActive }) => {
+const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive }) => {
   const filteredNotes = isActive ?
-    notes.filter(note => note.archived === false) :
-    notes.filter(note => note.archived === true);
+    notes.filter(note => !note.archived) :
+    notes.filter(note => note.archived);
   
   return (
     <section className="note-list">
@@ -24,6 +24,10 @@ const NoteList = ({ notes, title, isActive }) => {
               body={body}
               createdAt={createdAt}
               archivedStatus={archived}
+              isActive={isActive}
+              onDelete={onDelete}
+              onArchive={onArchive}
+              onUnArchive={onUnArchive}
             />
           );
         })}
