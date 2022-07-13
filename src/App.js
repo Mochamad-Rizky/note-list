@@ -6,6 +6,7 @@ import NoteList from "./components/NoteList/NoteList";
 import getData from "./data/data";
 
 import './App.scss';
+import SearchBar from "./components/SearchBar/SearchBar";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -76,7 +77,7 @@ const App = () => {
   const unArchiveNoteHandler = (id) => {
     Swal.fire({
       title: "Apakah Anda yakin ingin memindahkan ke catatan aktif?",
-      text: "Data akan memindahkan ke catatan aktif!",
+      text: "Data akan diindahkan ke catatan aktif!",
       icon: "warning",
       showCancelButton: true,
     }).then(result => {
@@ -100,12 +101,13 @@ const App = () => {
     });
   };
   
-  const searchNoteHandler = (searchTermInput) => {
-    setSearchTerm(searchTermInput);
-  }
+  const searchNoteHandler = (event) => {
+    setSearchTerm(event.target.value);
+  };
   
   return (
     <Layout>
+      <SearchBar onSearch={searchNoteHandler} />
       <NoteList
         notes={notes}
         title="Catatan Aktif"
