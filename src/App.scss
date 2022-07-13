@@ -3,3 +3,21 @@
 html, a {
 	font-family: "Poppins", sans-serif !important;
 }
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+main {
+	flex: 1 0;
+}
+
+footer {
+	flex: 0 0;
+}
