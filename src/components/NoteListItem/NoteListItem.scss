@@ -1,0 +1,26 @@
+.note-list__item {
+	box-shadow: 1px 1px 31px 6px rgba(0, 0, 0, 0.2);
+	padding: 1rem;
+	border-radius: 15px;
+	transition: all 0.3s ease-in-out;
+
+	&:hover {
+		transform: translateY(-0.5rem);
+	}
+
+	&-title {
+		font-weight: bold;
+	}
+
+	&-createdAt {
+		font-size: 0.8rem;
+		color: #8c8c8c;
+		margin-bottom: 0.5rem;
+	}
+
+	&-body {
+		font-size: 0.8rem;
+		color: #8c8c8c;
+		margin-bottom: 0.5rem;
+	}
+}
