@@ -75,8 +75,8 @@ const App = () => {
   
   const unArchiveNoteHandler = (id) => {
     Swal.fire({
-      title: "Apakah Anda yakin ingin menambahkan ke catatan aktif?",
-      text: "Data akan ditambahkan ke catatan aktif!",
+      title: "Apakah Anda yakin ingin memindahkan ke catatan aktif?",
+      text: "Data akan memindahkan ke catatan aktif!",
       icon: "warning",
       showCancelButton: true,
     }).then(result => {
