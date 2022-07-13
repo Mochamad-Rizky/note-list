@@ -3,6 +3,8 @@
 	padding: 1rem;
 	border-radius: 15px;
 	transition: all 0.3s ease-in-out;
+	display: flex;
+	flex-direction: column;
 
 	&:hover {
 		transform: translateY(-0.5rem);
@@ -22,5 +24,9 @@
 		font-size: 0.8rem;
 		color: #8c8c8c;
 		margin-bottom: 0.5rem;
+	}
+
+	.note-list__item-description__container {
+		flex: 1 1;
 	}
 }
