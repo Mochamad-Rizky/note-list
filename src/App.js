@@ -92,7 +92,7 @@ const App = () => {
         
         Swal.fire({
           title: "Berhasil!",
-          text: "Data berhasil ditambahkan ke catatan aktif!",
+          text: "Data berhasil memindahkan ke catatan aktif!",
           icon: "success",
           timer: 1000,
         });
