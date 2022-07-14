@@ -6,7 +6,6 @@ import convertDateToLocale from "../../utils/convertDatetoLocale";
 import './NoteListItem.scss';
 
 const NoteListItem = ({ title, body, createdAt, id, archivedStatus, onDelete, onArchive, onUnArchive }) => {
-  console.log(archivedStatus);
   return (
     <article className="note-list__item">
       <div className="note-list__item-description__container">
