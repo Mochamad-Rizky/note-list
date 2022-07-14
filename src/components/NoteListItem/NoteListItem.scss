@@ -5,6 +5,7 @@
 	transition: all 0.3s ease-in-out;
 	display: flex;
 	flex-direction: column;
+	word-wrap: break-word;
 
 	&:hover {
 		transform: translateY(-0.5rem);
