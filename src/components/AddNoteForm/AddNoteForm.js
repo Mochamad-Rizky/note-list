@@ -39,7 +39,7 @@ const AddNoteForm = ({ onAddNoteHandler }) => {
       <h2 className="text-center">Tambah Catatan</h2>
       <form onSubmit={submitNoteHandler}>
         <div className="form-group">
-          <p>Maksimal judul karakter : {limitTitleValue}</p>
+          <p>Maksimal judul karakter yang tersisa: {limitTitleValue}</p>
           <label htmlFor="title">Judul</label>
           <input value={titleValue} onChange={titleChangeHandler} type="text" className="form-control" id="title" placeholder="Judul" />
         </div>
