@@ -14,15 +14,7 @@ const App = () => {
   
   useEffect(() => {
     setNotes(getData);
-    
-    if (searchTerm) {
-      setNotes(prevState => {
-        return prevState.filter(note => {
-          return note.title.toLowerCase().includes(searchTerm.toLowerCase());
-        });
-      });
-    }
-  }, [searchTerm]);
+  }, []);
   
   const deleteNoteHandler = (id) => {
     Swal.fire({
@@ -114,12 +106,14 @@ const App = () => {
         isActive
         onDelete={deleteNoteHandler}
         onArchive={archiveNoteHandler}
+        searchTerm={searchTerm}
       />
       <NoteList
         notes={notes}
         title="Catatan Arsip"
         onDelete={deleteNoteHandler}
         onUnArchive={unArchiveNoteHandler}
+        searchTerm={searchTerm}
       />
     </Layout>
   );

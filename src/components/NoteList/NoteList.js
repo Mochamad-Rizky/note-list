@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import NoteListItem from "../NoteListItem/NoteListItem";
 
 import './NoteList.scss';
+import NotFound from "../NotFound/NotFound";
 
-const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive }) => {
+const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive, searchTerm }) => {
   const filteredNotes = isActive ?
     notes.filter(note => !note.archived) :
     notes.filter(note => note.archived);
   
+  let filteredNotesBySearchTerm = !searchTerm ?
+    filteredNotes : filteredNotes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  ;
+  
   return (
     <section className="note-list">
       <h2>{title}</h2>
-      <div className="note-list__container">
-        {filteredNotes.map((note) => {
+      <div className={filteredNotesBySearchTerm.length === 0 ? 'note-list__container-empty' : 'note-list__container'}>
+        {filteredNotesBySearchTerm.length === 0 && <NotFound />}
+        {filteredNotesBySearchTerm.map((note) => {
           const { id, title, body, createdAt, archived } = note;
           
           return (
