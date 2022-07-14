@@ -32,7 +32,6 @@ const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive, se
       <h2>{title}</h2>
       <div className={filteredNotesBySearchTerm.length === 0 ? 'note-list__container-empty' : 'note-list__container'}>
         {isNotFound && !isLoading && <h3 className="text-center">Loading...</h3>}
-        {/*{(filteredNotes.length === 0 && filteredNotesBySearchTerm === 0) && <NotFound />}*/}
         {(filteredNotesBySearchTerm.length === 0 || (filteredNotes.length === 0 && filteredNotesBySearchTerm === 0)) && <NotFound />}
         {filteredNotesBySearchTerm.map((note) => {
           const { id, title, body, createdAt, archived } = note;
