@@ -7,6 +7,7 @@ import getData from "./data/data";
 
 import './App.scss';
 import SearchBar from "./components/SearchBar/SearchBar";
+import AddNoteForm from "./components/AddNoteForm/AddNoteForm";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -39,7 +40,7 @@ const App = () => {
     });
   };
   
-  const archiveNoteHandler = useCallback((id) => {
+  const archiveNoteHandler = (id) => {
     Swal.fire({
       title: "Apakah Anda yakin ingin mengarsipkan catatan ini?",
       text: "Data akan diarsipkan!",
@@ -64,18 +65,17 @@ const App = () => {
         });
       }
     });
-  }, []);
+  };
   
-  const unArchiveNoteHandler = useCallback((id) => {
+  const unArchiveNoteHandler = (id) => {
     Swal.fire({
       title: "Apakah Anda yakin ingin memindahkan ke catatan aktif?",
-      text: "Data akan diindahkan ke catatan aktif!",
+      text: "Data akan dipindahkan ke catatan aktif!",
       icon: "warning",
       showCancelButton: true,
     }).then(result => {
       if (result.isConfirmed) {
         setNotes(prevState => {
-          console.log(prevState, 'hai');
           return prevState.map(note => {
             if (note.id === id) {
               note.archived = false;
@@ -92,14 +92,26 @@ const App = () => {
         });
       }
     });
-  }, []);
+  }
   
   const searchNoteHandler = (event) => {
     setSearchTerm(event.target.value);
   };
   
+  const addNoteHandler = (note) => {
+    setNotes(prevState => [...prevState, note]);
+    
+    Swal.fire({
+      title: "Berhasil!",
+      text: "Catatan berhasil ditambahkan!",
+      icon: "success",
+      timer: 1000,
+    });
+  };
+  
   return (
     <Layout>
+      <AddNoteForm onAddNoteHandler={addNoteHandler}/>
       <SearchBar onSearch={searchNoteHandler} />
       <NoteList
         notes={notes}

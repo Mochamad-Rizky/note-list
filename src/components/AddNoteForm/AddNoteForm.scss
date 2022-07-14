@@ -1,0 +1,17 @@
+.add-note__form {
+	max-width: 500px;
+	margin: auto;
+
+	.form-group {
+		margin-top: 1rem;
+		label {
+			margin-bottom: 0.5rem;
+		}
+
+	}
+
+	button {
+		margin-top: 1rem;
+		display: block;
+	}
+}
