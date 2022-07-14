@@ -6,19 +6,18 @@ import './NoteList.scss';
 import NotFound from "../NotFound/NotFound";
 
 const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive, searchTerm }) => {
-  const [listNote, setListNote] = useState([]);
   const [isNotFound, setIsNotFound] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
+  const filteredNotes = isActive ?
+    notes.filter(note => !note.archived) :
+    notes.filter(note => note.archived);
+  
+  let filteredNotesBySearchTerm = !searchTerm ?
+    filteredNotes : filteredNotes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  ;
+  
   useEffect(() => {
-    const filteredNotes = isActive ?
-      notes.filter(note => !note.archived) :
-      notes.filter(note => note.archived);
-    
-    let filteredNotesBySearchTerm = !searchTerm ?
-      filteredNotes : filteredNotes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    ;
-    
     if (searchTerm && filteredNotesBySearchTerm.length === 0) {
       setIsNotFound(true);
     } else {
@@ -26,19 +25,16 @@ const NoteList = ({ notes, title, isActive, onDelete, onArchive, onUnArchive, se
     }
     
     setIsLoading(!(filteredNotesBySearchTerm.length > 0));
-    setListNote(filteredNotesBySearchTerm);
-  }, [searchTerm, notes])
-  
-  console.log(isNotFound);
-  console.log(isLoading);
+  }, [searchTerm, filteredNotesBySearchTerm]);
   
   return (
     <section className="note-list">
       <h2>{title}</h2>
-      <div className={listNote.length === 0 ? 'note-list__container-empty' : 'note-list__container'}>
+      <div className={filteredNotesBySearchTerm.length === 0 ? 'note-list__container-empty' : 'note-list__container'}>
         {isNotFound && !isLoading && <h3 className="text-center">Loading...</h3>}
-        {isNotFound && isLoading && <NotFound />}
-        {listNote.map((note) => {
+        {/*{(filteredNotes.length === 0 && filteredNotesBySearchTerm === 0) && <NotFound />}*/}
+        {(filteredNotesBySearchTerm.length === 0 || (filteredNotes.length === 0 && filteredNotesBySearchTerm === 0)) && <NotFound />}
+        {filteredNotesBySearchTerm.map((note) => {
           const { id, title, body, createdAt, archived } = note;
           
           return (

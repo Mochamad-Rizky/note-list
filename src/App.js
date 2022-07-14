@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
 
 import Layout from "./layout/Layout";
@@ -39,7 +39,7 @@ const App = () => {
     });
   };
   
-  const archiveNoteHandler = (id) => {
+  const archiveNoteHandler = useCallback((id) => {
     Swal.fire({
       title: "Apakah Anda yakin ingin mengarsipkan catatan ini?",
       text: "Data akan diarsipkan!",
@@ -64,9 +64,9 @@ const App = () => {
         });
       }
     });
-  };
+  }, []);
   
-  const unArchiveNoteHandler = (id) => {
+  const unArchiveNoteHandler = useCallback((id) => {
     Swal.fire({
       title: "Apakah Anda yakin ingin memindahkan ke catatan aktif?",
       text: "Data akan diindahkan ke catatan aktif!",
@@ -75,6 +75,7 @@ const App = () => {
     }).then(result => {
       if (result.isConfirmed) {
         setNotes(prevState => {
+          console.log(prevState, 'hai');
           return prevState.map(note => {
             if (note.id === id) {
               note.archived = false;
@@ -91,7 +92,7 @@ const App = () => {
         });
       }
     });
-  };
+  }, []);
   
   const searchNoteHandler = (event) => {
     setSearchTerm(event.target.value);
